@@ -1,0 +1,6 @@
+name: AiSolver
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pyqt
