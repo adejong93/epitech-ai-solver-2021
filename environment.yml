@@ -4,3 +4,5 @@ channels:
   - defaults
 dependencies:
   - pyqt
+  - fire
+  - python=3.9
