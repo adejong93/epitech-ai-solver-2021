@@ -1,7 +1,16 @@
-import fire
+import sys
+#import fire
+from PyQt5.QtWidgets import QApplication
 
-def launch():
-    ...
+from src.gui.start_window import StartWindow
+
 
 if __name__ == '__main__':
-    fire.Fire()
+    app = QApplication.instance()
+
+    if not app:
+        app = QApplication(sys.argv)
+    #fire.Fire()
+    window = StartWindow()
+    window.show()
+    app.exec_()
