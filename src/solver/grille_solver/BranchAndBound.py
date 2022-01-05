@@ -203,6 +203,7 @@ class GrilleBranchAndBound(GrilleSolver):
 
                     # Add child to list of live nodes
                     pq.push(child)
+    
 
     def start(self, initState: Board):
         if self.size != 3 and self.size != 5:
