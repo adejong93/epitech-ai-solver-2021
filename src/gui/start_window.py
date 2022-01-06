@@ -25,16 +25,14 @@ class StartWindow(QtWidgets.QWidget):
         self.strategy_select.currentIndexChanged.connect(self.set_strategy)
         self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
-        self.show()
     
-    
-    def set_puzzle(self, index):
+    def set_puzzle(self, index) -> None:
         self.puzzle = index
 
     
-    def set_strategy(self, index):
+    def set_strategy(self, index) -> None:
         self.strategy = index
     
 
-    def set_show_metrics(self, show_metrics):
+    def set_show_metrics(self, show_metrics) -> None:
         self.show_metrics = True if show_metrics == 2 else False
