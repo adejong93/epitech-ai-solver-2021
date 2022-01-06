@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets, uic
+from .ressource.logo import *
 
 
 puzzles = ['8-Puzzle', '24-Puzzle', '20-Queens problem', '1000000-Queens problem']
