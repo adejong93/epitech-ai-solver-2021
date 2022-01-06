@@ -10,13 +10,14 @@ class StartWindow(QtWidgets.QWidget):
         super(StartWindow, self).__init__()
         uic.loadUi('./src/gui/template/start_window.ui', self)
 
-        self.puzzle_select = self.findChild(QtWidgets.QComboBox, 'puzzle_select')
-        self.strategy_select = self.findChild(QtWidgets.QComboBox, 'strategy_select')
-        self.show_metrics_checkbox = self.findChild(QtWidgets.QCheckBox, 'show_metrics_checkbox')
+        self.puzzle_select          : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'puzzle_select')
+        self.strategy_select        : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'strategy_select')
+        self.show_metrics_checkbox  : QtWidgets.QCheckBox = self.findChild(QtWidgets.QCheckBox, 'show_metrics_checkbox')
 
-        self.puzzle = 0
-        self.strategy = 0 
-        self.show_metrics = False
+        self.puzzle         : int = 0
+        self.strategy       : int = 0 
+        self.show_metrics   : bool = False
+
 
         self.puzzle_select.addItems(puzzles)
         self.strategy_select.addItems(strategies)
@@ -26,13 +27,13 @@ class StartWindow(QtWidgets.QWidget):
         self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
     
-    def set_puzzle(self, index) -> None:
+    def set_puzzle(self, index: int) -> None:
         self.puzzle = index
 
     
-    def set_strategy(self, index) -> None:
+    def set_strategy(self, index: int) -> None:
         self.strategy = index
     
 
-    def set_show_metrics(self, show_metrics) -> None:
+    def set_show_metrics(self, show_metrics: int) -> None:
         self.show_metrics = True if show_metrics == 2 else False
