@@ -209,7 +209,7 @@ class GrilleBranchAndBound(GrilleSolver):
             return
 
         # Driver Code
-        initial = [[ 0 for i in range(self.size)] for j in range(self.size)]
+        initial = [[0 for _ in range(self.size)] for _ in range(self.size)]
         for piece in initState.pieces:
             initial[piece.position[0]][piece.position[1]] = piece.id
         for i in range(self.size):
@@ -220,10 +220,8 @@ class GrilleBranchAndBound(GrilleSolver):
 
         # Solvable Final configuration
         # Value 0 is used for empty space
-        final = [[1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 0]]
-
+        final = [[1 + (i + j*self.size) for i in range(0, self.size)] for j in range(self.size)]
+        final[self.size -1][self.size -1] = 0
         # Function call to solve the puzzle
         print("AYAA")
         self.solve(initial, empty_tile_pos, final)
