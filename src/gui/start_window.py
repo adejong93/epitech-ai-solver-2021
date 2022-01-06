@@ -1,38 +1,50 @@
 from PyQt5 import QtWidgets, uic
+
 from .ressource.logo import *
+from ..solver.SolverFactory import SolverFactory
 
-
-puzzles = ['8-Puzzle', '24-Puzzle', '20-Queens problem', '1000000-Queens problem']
-strategies = ['Uninformed search', 'Informed search', 'Local search algorithm']
 
 class StartWindow(QtWidgets.QWidget):
-    def __init__(self) -> None:
+    def __init__(self, solver_factory: SolverFactory) -> None:
         super(StartWindow, self).__init__()
         uic.loadUi('./src/gui/template/start_window.ui', self)
 
-        self.puzzle_select          : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'puzzle_select')
-        self.strategy_select        : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'strategy_select')
+        self.problem_select         : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'problem_select')
+        self.solver_select          : QtWidgets.QComboBox = self.findChild(QtWidgets.QComboBox, 'solver_select')
         self.show_metrics_checkbox  : QtWidgets.QCheckBox = self.findChild(QtWidgets.QCheckBox, 'show_metrics_checkbox')
 
-        self.puzzle         : int = 0
-        self.strategy       : int = 0 
+        self.problem        : int = 0
+        self.solver         : int = 0 
         self.show_metrics   : bool = False
 
+        self.__solver_factory: SolverFactory = solver_factory
 
-        self.puzzle_select.addItems(puzzles)
-        self.strategy_select.addItems(strategies)
+        self.problem_select.addItems(self.__solver_factory.problems_list)
+        self.set_problem(0)
+        self.set_solver(0)
 
-        self.puzzle_select.currentIndexChanged.connect(self.set_puzzle)
-        self.strategy_select.currentIndexChanged.connect(self.set_strategy)
+        self.problem_select.currentIndexChanged.connect(self.set_problem)
+        self.solver_select.currentIndexChanged.connect(self.set_solver)
         self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
     
-    def set_puzzle(self, index: int) -> None:
-        self.puzzle = index
+    def set_problem(self, index: int) -> None:
+        problem_label = self.__solver_factory.problems_list[index]
 
+        self.problem = index
+
+        print('problem:', self.problem)
+
+        for key, problem_list in self.__solver_factory.problems.items():
+            if problem_label in problem_list:
+                self.solver_select.clear()
+                self.solver_select.addItems(self.__solver_factory.solvers[key])
     
-    def set_strategy(self, index: int) -> None:
-        self.strategy = index
+
+    def set_solver(self, index: int) -> None:
+        self.solver = index
+
+        print('solver:', self.solver)
     
 
     def set_show_metrics(self, show_metrics: int) -> None:

@@ -2,6 +2,7 @@ import sys
 #import fire
 from PyQt5.QtWidgets import QApplication
 
+from src.solver.SolverFactory import SolverFactory
 from src.gui.start_window import StartWindow
 
 
@@ -11,6 +12,7 @@ if __name__ == '__main__':
     if not app:
         app = QApplication(sys.argv)
     #fire.Fire()
-    window = StartWindow()
+    factory = SolverFactory()
+    window = StartWindow(factory)
     window.show()
     app.exec_()
