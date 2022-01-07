@@ -6,3 +6,4 @@ dependencies:
   - pyqt
   - fire
   - python=3.9
+  - psutil

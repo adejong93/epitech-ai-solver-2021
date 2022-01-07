@@ -76,8 +76,8 @@ class GrilleBranchAndBound(GrilleSolver):
     def __init__(self,
                  n          : int) -> None:
         self.size           : int   = n
-        self.row            : List[int] = [1, 0, -1, 0] if n == 3 else [2, 0, -2, 0]
-        self.col            : List[int] = [0, -1, 0, 1] if n == 3 else [0, -2, 0, 2]
+        self.row            : List[int] = [1, 0, -1, 0]
+        self.col            : List[int] = [0, -1, 0, 1]
 
     # Function to calculate the number of
     # misplaced tiles ie. number of non-blank

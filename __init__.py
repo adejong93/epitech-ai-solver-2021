@@ -1,3 +1,3 @@
 from . import src
 from . import AiSolver
-from . import GBAB_test
+from . import NP_GBAB_test
