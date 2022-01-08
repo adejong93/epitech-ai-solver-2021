@@ -1,3 +1,2 @@
-from . import GrilleSolver
-from . import BranchAndBound
-from . import pynpuzzle
+from .BranchAndBound import GrilleBranchAndBound
+from .a_star.AStar import AStar

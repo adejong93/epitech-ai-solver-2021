@@ -75,6 +75,7 @@ class GrilleBranchAndBound(GrilleSolver):
 
     def __init__(self,
                  n          : int) -> None:
+        super().__init__(n)
         self.size           : int   = n
         self.row            : List[int] = [1, 0, -1, 0]
         self.col            : List[int] = [0, -1, 0, 1]

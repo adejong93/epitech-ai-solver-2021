@@ -1,27 +1,29 @@
 from .SolverInterface import ISolver
 
 from .queen_solver import (
-    BackTracking,
-    HillClimbSolver
+    HillClimbSolver,
+    BackTrackingSolver
 )
 
 from .grille_solver import (
-    BranchAndBound,
-    GrilleSolver
+    GrilleBranchAndBound,
+    AStar
 )
 
 class SolverFactory:
     def __init__(self) -> None:
         self.solvers : dict[str, list[str]] = {
-            'grille': ['BranchAndBound'],
+            'grille' : ['GrilleBranchAndBound', 'AStar'],
             'queen': ['BackTracking', 'HillClimbSolver']
         }
 
-        self.HillClimbSolver    : HillClimbSolver = HillClimbSolver
-        self.BranchAndBound     : BranchAndBound  = BranchAndBound
-        self.BackTracking       : BackTracking    = BackTracking
+        self.HillClimbSolver        : HillClimbSolver       = HillClimbSolver
+        self.BackTracking           : BackTrackingSolver    = BackTrackingSolver
+
+        self.GrilleBranchAndBound   : GrilleBranchAndBound  = GrilleBranchAndBound
+        self.AStar                  : AStar                 = AStar
     
     def build_solver(self,
                      solver_name    : str,
                      ) -> ISolver:
-        return getattr(self, solver_name)()
+        return getattr(self, solver_name)(3)

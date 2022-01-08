@@ -7,7 +7,8 @@ class GrilleSolver(ISolver):
 
     def __init__(self,
                  n          : int) -> None:
-                 self.size  : int   = n
+        self.size  : int   = n
+        super().__init__()
     
     def get_initial_goal(self, board: Board):
         initial = [[ 0 for i in range(self.size)] for j in range(self.size)]
