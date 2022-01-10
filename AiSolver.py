@@ -2,6 +2,7 @@ import sys
 #import fire
 from PyQt5.QtWidgets import QApplication
 
+from src.solver.SolverFactory import SolverFactory
 from src.gui.start_window import StartWindow
 
 

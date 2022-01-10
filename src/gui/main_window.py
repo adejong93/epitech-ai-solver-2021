@@ -9,5 +9,5 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi('./src/gui/template/main_window.ui', self)
     
 
-    def set_board(board: Board) -> None:
+    def set_board(self, board: Board) -> None:
         ...
