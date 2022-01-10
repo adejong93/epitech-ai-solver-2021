@@ -10,3 +10,4 @@ class MainWindow(QtWidgets.QMainWindow):
     
 
     def set_board(board: Board) -> None:
+        

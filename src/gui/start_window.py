@@ -33,8 +33,6 @@ class StartWindow(QtWidgets.QWidget):
 
         self.problem = index
 
-        print('problem:', self.problem)
-
         for key, problem_list in self.__solver_factory.problems.items():
             if problem_label in problem_list:
                 self.solver_select.clear()
@@ -44,8 +42,6 @@ class StartWindow(QtWidgets.QWidget):
     def set_solver(self, index: int) -> None:
         self.solver = index
 
-        print('solver:', self.solver)
-    
 
     def set_show_metrics(self, show_metrics: int) -> None:
         self.show_metrics = True if show_metrics == 2 else False
