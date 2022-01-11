@@ -60,3 +60,31 @@ class Metric:
         if self.max_ram_useage < psutil.virtual_memory().percent:
             self.max_ram_useage = psutil.virtual_memory().percent
         # self.max_ram_useage = (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss) / 1000
+
+    def from_path_to_grid_list(self, initial):
+        for i in range(len(initial)):
+            for j in range(len(initial[i])):
+                if initial[i][j] == 0:
+                    pos_x = i
+                    pos_y = j
+                    break
+        self.path_to_goal_list = [initial]
+        for move in self.path_to_goal:
+            next_state = copy(self.path_to_goal_list(-1))
+            if move == 'up':
+                next_state[pos_x][pos_y] = next_state[pos_x - 1][pos_y]
+                next_state[pos_x - 1][pos_y] = 0
+                pos_x -= 1
+            elif move == 'down':
+                next_state[pos_x][pos_y] = next_state[pos_x + 1][pos_y]
+                next_state[pos_x + 1][pos_y] = 0
+                pos_x += 1
+            elif move == 'left':
+                next_state[pos_x][pos_y] = next_state[pos_x][pos_y - 1]
+                next_state[pos_x][pos_y - 1] = 0
+                pos_y -= 1
+            elif move == 'right':
+                next_state[pos_x][pos_y] = next_state[pos_x][pos_y + 1]
+                next_state[pos_x][pos_y + 1] = 0
+                pos_y += 1
+            self.path_to_goal_list.append(next_state)
