@@ -38,6 +38,7 @@ class BackTrackingSolver(QueenSolver):
         """ Consider this column and try placing
             this queen in all rows one by one """
         for i in range(self.size):
+            self.metric.nodes_expanded += 1
             self.metric.measure_ram_useage()
             """ Check if the queen can be placed on board[i][col] """
             """ A check if a queen can be placed on board[row][col].
@@ -74,6 +75,7 @@ class BackTrackingSolver(QueenSolver):
     feasible solutions."""
     def start(self):
         self.metric.start_timer()
+        self.metric.nodes_expanded = 0
         board, success = self.solveNQUtil(self.board.get_board_grid(), 0)
         if not success:
             print("Solution does not exist")
