@@ -33,7 +33,8 @@ class BackTrackingSolver(QueenSolver):
         """ base case: If all queens are placed
             then return True """
         if (col >= self.size):
-            return True
+            return (board, True)
+        
             
         """ Consider this column and try placing
             this queen in all rows one by one """
@@ -51,7 +52,7 @@ class BackTrackingSolver(QueenSolver):
                 self.ld[i - col + self.size - 1] = self.rd[i + col] = self.cl[i] = 1
                 
                 """ recur to place rest of the queens """
-                if (self.solveNQUtil(board, col + 1)):
+                if self.solveNQUtil(board, col + 1)[1]:
                     return (board, True)
                     
                 """ If placing queen in board[i][col] 
@@ -74,13 +75,11 @@ class BackTrackingSolver(QueenSolver):
     feasible solutions."""
     def start(self):
         self.metric.start_timer()
-        self.printSolution(self.board.get_board_grid())
         board, success = self.solveNQUtil(self.board.get_board_grid(), 0)
         if not success:
             print("Solution does not exist")
             return False
         print()
-        self.printSolution(board)
         self.metric.path_to_goal_list.append(board)
         self.metric.stop_timer()
         self.finished.emit()
