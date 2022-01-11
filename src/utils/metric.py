@@ -61,7 +61,7 @@ class Metric:
             self.max_ram_useage = psutil.virtual_memory().percent
         # self.max_ram_useage = (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss) / 1000
 
-    def from_path_to_grid_list(self, initial):
+    def from_path_to_goal_list(self, initial):
         for i in range(len(initial)):
             for j in range(len(initial[i])):
                 if initial[i][j] == 0:
