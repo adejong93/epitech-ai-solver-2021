@@ -12,6 +12,7 @@ class Metric:
                  frontier   = None):
 
         self.path_to_goal = []
+        self.path_to_goal_list = []
         self.nodes_expanded = 0
         self.fringe = frontier
         self.max_fringe_size = 0
@@ -70,21 +71,21 @@ class Metric:
                     break
         self.path_to_goal_list = [initial]
         for move in self.path_to_goal:
-            next_state = copy(self.path_to_goal_list(-1))
-            if move == 'up':
+            next_state = copy.deepcopy(self.path_to_goal_list[-1])
+            if move == 'down':
                 next_state[pos_x][pos_y] = next_state[pos_x - 1][pos_y]
                 next_state[pos_x - 1][pos_y] = 0
                 pos_x -= 1
-            elif move == 'down':
+            elif move == 'up':
                 next_state[pos_x][pos_y] = next_state[pos_x + 1][pos_y]
                 next_state[pos_x + 1][pos_y] = 0
                 pos_x += 1
-            elif move == 'left':
+            elif move == 'right':
                 next_state[pos_x][pos_y] = next_state[pos_x][pos_y - 1]
                 next_state[pos_x][pos_y - 1] = 0
                 pos_y -= 1
-            elif move == 'right':
+            elif move == 'left':
                 next_state[pos_x][pos_y] = next_state[pos_x][pos_y + 1]
                 next_state[pos_x][pos_y + 1] = 0
                 pos_y += 1
-            self.path_to_goal_list.append(next_state)
+            self.path_to_goal_list.append(copy.deepcopy(next_state))

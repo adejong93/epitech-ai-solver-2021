@@ -20,7 +20,7 @@ class BackTrackingSolver(QueenSolver):
         self.cl = [0] * (8 * self.size)
     
     """ A utility function to print solution """
-    def printSolution(self, board): 
+    def printSolution(self, board):
         for i in range(self.size):
             for j in range(self.size):
                 print(board[i][j], end = " ")
@@ -74,12 +74,14 @@ class BackTrackingSolver(QueenSolver):
     feasible solutions."""
     def start(self):
         self.metric.start_timer()
+        self.printSolution(self.board.get_board_grid())
         board, success = self.solveNQUtil(self.board.get_board_grid(), 0)
         if not success:
             print("Solution does not exist")
             return False
-        self.metric.path_to_goal.append(Board.grille_to_board(board))
+        print()
+        self.printSolution(board)
+        self.metric.path_to_goal_list.append(board)
         self.metric.stop_timer()
         self.finished.emit()
-        # self.printSolution(board)
         return True

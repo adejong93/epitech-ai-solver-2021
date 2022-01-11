@@ -3,6 +3,7 @@ from PyQt5.QtCore import QThread
 from ..solver.SolverFactory import SolverFactory
 from ..solver.SolverInterface import ISolver
 from .ressource.logo import *
+from .main_window import MainWindow
 
 
 puzzles = ['8-Puzzle', '24-Puzzle', '20-Queens problem', '1000000-Queens problem']
@@ -41,26 +42,18 @@ class StartWindow(QtWidgets.QWidget):
         self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
 
-    def _build_thread(self):
-        self.solver_thread  = QThread()
-        self.solver         = self.solver_factory.build_solver(self.strategy_name[self.strategy], self.size)
-        
-        self.solver.moveToThread(self.solver_thread)
-        self.solver_thread.started.connect(self.solver.start)
-        self.solver.finished.connect(self.solver_thread.quit)
-        self.solver.finished.connect(self.solver.deleteLater)
-        self.solver.finished.connect(self._solver_finished)
-        self.solver_thread.finished.connect(self.solver_thread.deleteLater)
+    
         # self.solver.progress.connect(self.reportProgress)
 
     def _solver_finished(self):
         print(self.solver.metric.path_to_goal[0].get_board_grid())
 
     def launch_solver(self):
-        if self.solver_thread is not None:
-            return
-        self._build_thread()
-        self.solver_thread.start()
+        self.solver = self.solver_factory.build_solver(self.strategy_name[self.strategy], self.size)
+        self.window = MainWindow(self.solver)
+        self.window.show()
+        self.close()
+        # self.solver_thread.start()
     
     def set_puzzle(self, index: int) -> None:
         self.puzzle = index

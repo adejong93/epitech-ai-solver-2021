@@ -11,8 +11,8 @@ from .grille_solver.a_star.AStar import AStar
 class SolverFactory:
     def __init__(self) -> None:
         self.solvers : dict[str, list[str]] = {
-            'grille' : ['GrilleBranchAndBound', 'AStar'],
-            'queen': ['BackTracking', 'HillClimbSolver']
+            'grille' : ['AStar'],
+            'queen': ['BackTracking']
         }
         self.problems: dict[str, list[str]] = {
             'grille': ['8-Puzzle', '24-Puzzle'],

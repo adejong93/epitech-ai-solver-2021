@@ -91,10 +91,10 @@
        </spacer>
       </item>
       <item row="2" column="2">
-       <widget class="QGridLayout" name="goal_state_view"/>
+       <layout class="QGridLayout" name="goal_state_view"/>
       </item>
       <item row="2" column="1">
-       <widget class="QGridLayout" name="current_state_view"/>
+       <layout class="QGridLayout" name="current_state_view"/>
       </item>
       <item row="2" column="0">
        <spacer name="left_current_state_spacer">
