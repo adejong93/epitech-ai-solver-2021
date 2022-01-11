@@ -14,6 +14,11 @@ class SolverFactory:
             'grille' : ['GrilleBranchAndBound', 'AStar'],
             'queen': ['BackTracking', 'HillClimbSolver']
         }
+        self.problems: dict[str, list[str]] = {
+            'grille': ['8-Puzzle', '24-Puzzle'],
+            'queen': ['20-Queens problem', '1000000-Queens problem']
+        }
+        self.problems_list: list[str] = [item for sublist in list(self.problems.values()) for item in sublist]
 
         self.HillClimbSolver        : HillClimbSolver       = HillClimbSolver
         self.BackTracking           : BackTrackingSolver    = BackTrackingSolver
