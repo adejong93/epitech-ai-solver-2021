@@ -43,7 +43,7 @@ class StartWindow(QtWidgets.QWidget):
 
     def _build_thread(self):
         self.solver_thread  = QThread()
-        self.solver         = self.solver_factory.build_solver(self.strategy_name[self.strategy], 3)
+        self.solver         = self.solver_factory.build_solver(self.strategy_name[self.strategy], self.size)
         
         self.solver.moveToThread(self.solver_thread)
         self.solver_thread.started.connect(self.solver.start)
