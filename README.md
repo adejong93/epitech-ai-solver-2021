@@ -18,13 +18,13 @@
 
 #### With the puzzle problem
 
-![solver_puzzle](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/launcher_size.png)
+![solver_puzzle](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/solver_size.png)
 
 #### With the queen problem
 
-![solver_queen](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/launcher_size.png)
+![solver_queen](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/solver_size.png)
 
 
 #### Solved puzzle problem
 
-![solver_puzzle_solved](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/launcher_size.png)
+![solver_puzzle_solved](https://github.com/adejong93/epitech-ai-solver-2021/blob/main/solver_size.png)
