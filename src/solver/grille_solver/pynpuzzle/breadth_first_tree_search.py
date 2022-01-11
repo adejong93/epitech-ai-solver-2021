@@ -55,6 +55,7 @@ class Node:
         return is_goal_state(self.state, goal_state)
 
     def expand(self):
+        breakpoint()
         new_states = operator(self.state)
         self.children = []
         for state in new_states:

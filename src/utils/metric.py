@@ -8,7 +8,8 @@ class Metric:
 
     """Take measurements of search performance."""
 
-    def __init__(self, frontier):
+    def __init__(self,
+                 frontier   = None):
 
         self.path_to_goal = []
         self.nodes_expanded = 0
@@ -29,11 +30,13 @@ class Metric:
 
     def fringe_size(self):
         """Return the length of the fringe (frontier)"""
+        if self.fringe is None: return 0
         return len(self.fringe.queue)
 
 
     def update_max_fringe(self):
         """Update the value of max_fringe_size!"""
+        if self.fringe is None: return 0
         fringe_length = self.fringe_size()
         if fringe_length > self.max_fringe_size:
             self.max_fringe_size = fringe_length
@@ -43,7 +46,6 @@ class Metric:
         """Update the maximum search depth reached"""
         if self.search_depth > self.max_search_depth:
             self.max_search_depth = copy.copy(self.search_depth)
-
 
     def start_timer(self):
         self.start_time = time.time()
@@ -55,5 +57,6 @@ class Metric:
         
 
     def measure_ram_useage(self):
-        self.max_ram_useage = psutil.virtual_memory().percent
+        if self.max_ram_useage < psutil.virtual_memory().percent:
+            self.max_ram_useage = psutil.virtual_memory().percent
         # self.max_ram_useage = (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss) / 1000

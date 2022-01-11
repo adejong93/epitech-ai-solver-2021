@@ -40,14 +40,18 @@ class StartWindow(QtWidgets.QWidget):
 
     def _build_thread(self):
         self.solver_thread  = QThread()
-        self.solver         = self.solver_factory.build_solver(self.strategy_name[self.strategy])
+        self.solver         = self.solver_factory.build_solver(self.strategy_name[self.strategy], 3)
         
         self.solver.moveToThread(self.solver_thread)
         self.solver_thread.started.connect(self.solver.start)
         self.solver.finished.connect(self.solver_thread.quit)
         self.solver.finished.connect(self.solver.deleteLater)
+        self.solver.finished.connect(self._solver_finished)
         self.solver_thread.finished.connect(self.solver_thread.deleteLater)
         # self.solver.progress.connect(self.reportProgress)
+
+    def _solver_finished(self):
+        print(self.solver.metric.path_to_goal[0].get_board_grid())
 
     def launch_solver(self):
         if self.solver_thread is not None:

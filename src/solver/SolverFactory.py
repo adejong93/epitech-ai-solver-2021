@@ -5,10 +5,8 @@ from .queen_solver import (
     BackTrackingSolver
 )
 
-from .grille_solver import (
-    GrilleBranchAndBound,
-    AStar
-)
+from .grille_solver.BranchAndBound import GrilleBranchAndBound
+from .grille_solver.a_star.AStar import AStar
 
 class SolverFactory:
     def __init__(self) -> None:
@@ -25,5 +23,6 @@ class SolverFactory:
     
     def build_solver(self,
                      solver_name    : str,
+                     size           : int,
                      ) -> ISolver:
-        return getattr(self, solver_name)(3)
+        return getattr(self, solver_name)(size)

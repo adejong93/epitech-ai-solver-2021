@@ -2,20 +2,22 @@ from src.solver.grille_solver.a_star.AStar import AStar
 from src.solver.grille_solver.GrilleSolver import GrilleSolver
 from src.utils.Board import Board
 
-def new_board_and_solver(N):
-    b = Board('grille', N)
-    for piece in b.pieces:
-        print(piece.id, piece.position)
-    grille = GrilleSolver(N)
-    input_list = grille.get_initial_list(b)
-    return AStar(input_list), input_list
+# def new_board_and_solver(N):
+#     b = Board('grille', N)
+#     for piece in b.pieces:
+#         print(piece.id, piece.position)
+#     grille = GrilleSolver("grille", N)
+#     input_list = grille.board.get_board_list()
+#     return AStar(input_list), input_list
 
-s, input_list = new_board_and_solver(3)
-print(s.solvable(input_list))
+# s, input_list = new_board_and_solver(3)
+# print(s.solvable(input_list))
 
-while not s.solvable(input_list):
-    s, input_list = new_board_and_solver(3)
-    print(s.solvable(input_list))
+# while not s.solvable(input_list):
+#     s, input_list = new_board_and_solver(3)
+#     print(s.solvable(input_list))
+
+s = AStar(3)
 
 solution_metrics = s.a_star_search()
 print("path_to_goal: " + str(solution_metrics.path_to_goal))

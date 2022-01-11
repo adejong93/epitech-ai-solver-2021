@@ -2,7 +2,7 @@ from src.solver.grille_solver.GrilleSolver import GrilleSolver
 from src.solver.grille_solver.GrilleSolver import GrilleSolver
 from . import grid
 from . import custom_structures
-from . import metric
+from ....utils import metric
 import copy
 import math
 from dataclasses import dataclass, field
@@ -17,16 +17,14 @@ class AStar(GrilleSolver):
 
     """Controller class."""
     
-    def __init__(self, input_list):
+    def __init__(self, size):
+        super().__init__("grille", size)
         """Initialise Solver object. Raise ValueError if solution not possible."""
-        
-        if not self.solvable(input_list):
-            return None
 
         # don't just bind to input state. we want the object to have its OWN state
-        self.initial_state = copy.deepcopy(self.list_to_grid(input_list)) 
+        self.initial_state = copy.deepcopy(self.board.get_board_grid()) 
         
-        self.goal_state = self.set_goal_state(input_list)
+        self.goal_state = self.set_goal_state(self.board.get_board_list())
 
         # using custom structures so we can implement a custom __contains__()
         self.frontier = custom_structures.Frontier() 
@@ -35,7 +33,6 @@ class AStar(GrilleSolver):
 
         # TODO: fringe metrics not working for ast (because we're passing it wrong frontier here)
         self.metrics = metric.Metric(self.frontier)
-
 
 
     def uninformed_search(self, search_method):
@@ -176,3 +173,7 @@ class AStar(GrilleSolver):
                 i += 1
 
         return goal_state
+
+    def start(self):
+        self.metric = self.a_star_search()
+        self.finished.emit()
