@@ -17,14 +17,12 @@ class StartWindow(QtWidgets.QWidget):
         self.strategy_select        : QtWidgets.QComboBox   = self.findChild(QtWidgets.QComboBox, 'strategy_select')
         self.show_metrics_checkbox  : QtWidgets.QCheckBox   = self.findChild(QtWidgets.QCheckBox, 'show_metrics_checkbox')
         self.start_button           : QtWidgets.QPushButton = self.findChild(QtWidgets.QPushButton, 'right_button_spacer')
-        self.width_input            : QtWidgets.QSpinBox    = self.findChild(QtWidgets.QSpinBox, 'width_input')
-        self.height_input           : QtWidgets.QSpinBox    = self.findChild(QtWidgets.QSpinBox, 'height_input')
+        self.size_input            : QtWidgets.QSpinBox    = self.findChild(QtWidgets.QSpinBox, 'size_input')
 
         self.puzzle         : int           = 0
         self.strategy       : int           = 0 
         self.show_metrics   : bool          = False
-        self.width          : int           = 0
-        self.height         : int           = 0
+        self.size           : int           = 0
         self.solver_factory : SolverFactory = SolverFactory()
         self.solver_thread  : QThread       = None
         self.solver         : ISolver       = None
@@ -39,8 +37,7 @@ class StartWindow(QtWidgets.QWidget):
         self.start_button.clicked.connect(self.launch_solver)
         self.puzzle_select.currentIndexChanged.connect(self.set_puzzle)
         self.strategy_select.currentIndexChanged.connect(self.set_strategy)
-        self.width_input.valueChanged.connect(self.set_width)
-        self.height_input.valueChanged.connect(self.set_height)
+        self.size_input.valueChanged.connect(self.set_size)
         self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
 
@@ -76,11 +73,8 @@ class StartWindow(QtWidgets.QWidget):
     def set_strategy(self, index: int) -> None:
         self.strategy = index
     
-    def set_width(self, value: int) -> None:
-        self.width = value
-
-    def set_height(self, value: int) -> None:
-        self.height = value
+    def set_size(self, value: int) -> None:
+        self.size = value
     
     def set_show_metrics(self, show_metrics: int) -> None:
         self.show_metrics = True if show_metrics == 2 else False
