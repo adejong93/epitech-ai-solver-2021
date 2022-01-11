@@ -1,8 +1,8 @@
 ## Run Program
 
-Install Conda then run in project root:
-```conda env create -f environnement.yml```
-```conda activate AiSolver```
+Install Conda then run in project root:  
+```conda env create -f environnement.yml```  
+```conda activate AiSolver```  
 ```python ./AiSolver.py```
 
 ## Launcher window
