@@ -16,13 +16,11 @@ class StartWindow(QtWidgets.QWidget):
 
         self.puzzle_select          : QtWidgets.QComboBox   = self.findChild(QtWidgets.QComboBox, 'puzzle_select')
         self.strategy_select        : QtWidgets.QComboBox   = self.findChild(QtWidgets.QComboBox, 'strategy_select')
-        self.show_metrics_checkbox  : QtWidgets.QCheckBox   = self.findChild(QtWidgets.QCheckBox, 'show_metrics_checkbox')
         self.start_button           : QtWidgets.QPushButton = self.findChild(QtWidgets.QPushButton, 'right_button_spacer')
         self.size_input            : QtWidgets.QSpinBox    = self.findChild(QtWidgets.QSpinBox, 'size_input')
 
         self.puzzle         : int           = 0
         self.strategy       : int           = 0 
-        self.show_metrics   : bool          = False
         self.size           : int           = 0
         self.solver_factory : SolverFactory = SolverFactory()
         self.solver_thread  : QThread       = None
@@ -39,7 +37,6 @@ class StartWindow(QtWidgets.QWidget):
         self.puzzle_select.currentIndexChanged.connect(self.set_puzzle)
         self.strategy_select.currentIndexChanged.connect(self.set_strategy)
         self.size_input.valueChanged.connect(self.set_size)
-        self.show_metrics_checkbox.stateChanged.connect(self.set_show_metrics)
 
 
     
@@ -68,6 +65,3 @@ class StartWindow(QtWidgets.QWidget):
     
     def set_size(self, value: int) -> None:
         self.size = value
-    
-    def set_show_metrics(self, show_metrics: int) -> None:
-        self.show_metrics = True if show_metrics == 2 else False
