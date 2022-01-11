@@ -79,7 +79,6 @@ class BackTrackingSolver(QueenSolver):
         if not success:
             print("Solution does not exist")
             return False
-        print()
         self.metric.path_to_goal_list.append(board)
         self.metric.stop_timer()
         self.finished.emit()
