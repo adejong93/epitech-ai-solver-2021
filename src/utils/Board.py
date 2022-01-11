@@ -57,13 +57,13 @@ class Board:
     def _init_pieces_grille(self) -> None:
         while not self.solvable_grid():
             arrPos = []
+            self.pieces = []
             for x in range(self.size):
                 for y in range(self.size):
                     arrPos.append((x, y))
             for id in range((self.size ** 2) - 1):
                 index = random.randint(0, len(arrPos) - 1)
                 self.pieces.append(Piece(id + 1, arrPos.pop(index)))
-            return None
     
     def get_board_list(self):
         input_list = [0] * self.size ** 2
